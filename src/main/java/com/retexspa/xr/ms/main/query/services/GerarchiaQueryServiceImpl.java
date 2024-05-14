@@ -1,12 +1,16 @@
 package com.retexspa.xr.ms.main.query.services;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.retexspa.xr.ms.main.core.entities.GerarchiaQueryDTO;
 import com.retexspa.xr.ms.main.core.queries.BaseSort;
+import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
 import com.retexspa.xr.ms.main.core.queries.GerarchiaListQuery;
 import com.retexspa.xr.ms.main.core.responses.GerarchieResponse;
 import com.retexspa.xr.ms.main.core.responses.Pagination;
 import com.retexspa.xr.ms.main.core.searchRequest.GerarchiaSearchRequest;
 import com.retexspa.xr.ms.main.query.entities.GerarchiaQueryEntity;
+import com.retexspa.xr.ms.main.query.filterRequest.GerarchiaFilter;
+import com.retexspa.xr.ms.main.query.filterRequest.NegozioFilter;
 import com.retexspa.xr.ms.main.query.mappers.GerarchiaQueryMapper;
 import com.retexspa.xr.ms.main.query.repositories.GerarchiaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +34,11 @@ public class GerarchiaQueryServiceImpl implements GerarchiaQueryService {
     private GerarchiaQueryMapper gerarchiaQueryMapper;
 
     @Override
-    public Page<GerarchiaQueryEntity> searchQueryGerarchia(GerarchiaSearchRequest query) {
+    public Page<GerarchiaQueryEntity> searchQueryGerarchia(GenericSearchRequest<GerarchiaFilter> query) {
+        try {
+            GerarchiaFilter filter = GerarchiaFilter.createFilterFromMap(query.getFilter());
+
+
         List<Sort.Order> sorts = new ArrayList<>();
 
         if (query.getSort() != null && query.getSort().size() != 0) {
@@ -54,32 +62,35 @@ public class GerarchiaQueryServiceImpl implements GerarchiaQueryService {
 
         List<Specification<GerarchiaQueryEntity>> specifications = new ArrayList<>();
 
-        if (query.getId() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("id"), query.getId()));
+        if (filter.getId() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("id"), filter.getId()));
         }
 
-        if (query.getCode() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("codice"), query.getCode()));
+        if (filter.getCode() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("codice"), filter.getCode()));
         }
 
-        if (query.getDescription() != null) {
+        /*if (filter.getDescription() != null) {
             specifications.add(
                     (r, q, c) -> c.like(
-                            c.upper(r.get("descrizione")), "%" + query.getDescription().toUpperCase() + "%"));
-        }
+                            c.upper(r.get("descrizione")), "%" + filter.getDescription().toUpperCase() + "%"));
+        }*/
 
-        if (query.getVersion() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("version"), query.getVersion()));
+        if (filter.getVersion() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("version"), filter.getVersion()));
           }
 
         Specification<GerarchiaQueryEntity> specification = specifications.stream().reduce(Specification::and).orElse(null);
 
         Page<GerarchiaQueryEntity> page = this.gerarchiaRepository.findAll(specification, pageable);
         return page;
+        } catch (JsonProcessingException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
-    public GerarchieResponse searchGerarchia(GerarchiaSearchRequest query) {
+    public GerarchieResponse searchGerarchia(GenericSearchRequest<GerarchiaFilter> query) {
 
         GerarchieResponse GerarchieResponse = new GerarchieResponse();
         Page<GerarchiaQueryEntity> page = searchQueryGerarchia(query);

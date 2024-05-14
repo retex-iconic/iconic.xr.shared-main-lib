@@ -3,11 +3,13 @@ package com.retexspa.xr.ms.main.query.services;
 import com.retexspa.xr.ms.main.core.entities.NegozioQueryDTO;
 import com.retexspa.xr.ms.main.core.helpers.NativeQueryHelper;
 import com.retexspa.xr.ms.main.core.queries.BaseSort;
+import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
 import com.retexspa.xr.ms.main.core.queries.NegozioListQuery;
 import com.retexspa.xr.ms.main.core.responses.NegoziResponse;
 import com.retexspa.xr.ms.main.core.responses.Pagination;
 import com.retexspa.xr.ms.main.core.searchRequest.NegozioSearchRequest;
 import com.retexspa.xr.ms.main.query.entities.NegozioQueryEntity;
+import com.retexspa.xr.ms.main.query.filterRequest.NegozioFilter;
 import com.retexspa.xr.ms.main.query.repositories.NegozioRepository;
 import com.retexspa.xr.ms.main.query.mappers.NegozioQueryMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +43,8 @@ public class NegozioQueryServiceImpl implements NegozioQueryService {
 
 
     @Override
-    public Page<NegozioQueryEntity> searchQueryNegozio(NegozioSearchRequest query) {
+    public Page<NegozioQueryEntity> searchQueryNegozio(GenericSearchRequest<NegozioFilter> query) {
+        NegozioFilter filter = NegozioFilter.createFilterFromMap(query.getFilter());
         List<Sort.Order> sorts = new ArrayList<>();
 
         if (query.getSort() != null && query.getSort().size() != 0) {
@@ -198,174 +201,174 @@ public class NegozioQueryServiceImpl implements NegozioQueryService {
 
         List<Specification<NegozioQueryEntity>> specifications = new ArrayList<>();
 
-        if (query.getId() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("id"), query.getId()));
+        if (filter.getId() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("id"), filter.getId()));
         }
 
-        if (query.getCodice() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("codice")), "%" + query.getCodice().toUpperCase() + "%"));
+        if (filter.getCodice() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("codice")), "%" + filter.getCodice().toUpperCase() + "%"));
         }
 
-        if (query.getNome() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("nome")), "%" + query.getNome().toUpperCase() + "%"));
+        if (filter.getNome() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("nome")), "%" + filter.getNome().toUpperCase() + "%"));
         }
 
-        if (query.getDescrizione() != null) {
+        if (filter.getDescrizione() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("descrizione")), "%" + query.getDescrizione().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("descrizione")), "%" + filter.getDescrizione().toUpperCase() + "%"));
         }
-        if (query.getRagioneSociale() != null) {
+        if (filter.getRagioneSociale() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("ragioneSociale")), "%" + query.getRagioneSociale().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("ragioneSociale")), "%" + filter.getRagioneSociale().toUpperCase() + "%"));
         }
-        if (query.getCodiceFiscale() != null) {
+        if (filter.getCodiceFiscale() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("codiceFiscale")), "%" + query.getCodiceFiscale().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("codiceFiscale")), "%" + filter.getCodiceFiscale().toUpperCase() + "%"));
         }
-        if (query.getRegimeFiscale() != null) {
+        if (filter.getRegimeFiscale() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("regimeFiscale")), "%" + query.getRegimeFiscale().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("regimeFiscale")), "%" + filter.getRegimeFiscale().toUpperCase() + "%"));
         }
-        if (query.getMagazzino() != null) {
+        if (filter.getMagazzino() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("magazzino")), "%" + query.getMagazzino().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("magazzino")), "%" + filter.getMagazzino().toUpperCase() + "%"));
         }
-        if (query.getDifferenzialePartitaIVA() != null) {
+        if (filter.getDifferenzialePartitaIVA() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("differenzialePartitaIVA")),
-                    "%" + query.getDifferenzialePartitaIVA().toUpperCase() + "%"));
+                    "%" + filter.getDifferenzialePartitaIVA().toUpperCase() + "%"));
         }
-        if (query.getNazionePartitaIVA() != null) {
+        if (filter.getNazionePartitaIVA() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("nazionePartitaIVA")),
-                    "%" + query.getNazionePartitaIVA().toUpperCase() + "%"));
+                    "%" + filter.getNazionePartitaIVA().toUpperCase() + "%"));
         }
-        if (query.getPartitaIVA() != null) {
+        if (filter.getPartitaIVA() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("partitaIVA")), "%" + query.getPartitaIVA().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("partitaIVA")), "%" + filter.getPartitaIVA().toUpperCase() + "%"));
         }
-        if (query.getReaUfficio() != null) {
+        if (filter.getReaUfficio() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("reaUfficio")), "%" + query.getReaUfficio().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("reaUfficio")), "%" + filter.getReaUfficio().toUpperCase() + "%"));
         }
-        if (query.getReaNumero() != null) {
+        if (filter.getReaNumero() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("reaNumero")), "%" + query.getReaNumero().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("reaNumero")), "%" + filter.getReaNumero().toUpperCase() + "%"));
         }
-        if (query.getReaCapitaleSociale() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("reaCapitaleSociale"), query.getReaCapitaleSociale()));
+        if (filter.getReaCapitaleSociale() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("reaCapitaleSociale"), filter.getReaCapitaleSociale()));
         }
-        if (query.getReaSocioUnico() != null) {
+        if (filter.getReaSocioUnico() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("reaSocioUnico")), "%" + query.getReaSocioUnico().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("reaSocioUnico")), "%" + filter.getReaSocioUnico().toUpperCase() + "%"));
         }
-        if (query.getReaLiquidazione() != null) {
+        if (filter.getReaLiquidazione() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("reaLiquidazione")), "%" + query.getReaLiquidazione().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("reaLiquidazione")), "%" + filter.getReaLiquidazione().toUpperCase() + "%"));
         }
-        if (query.getCodiceDestinatarioSDI() != null) {
+        if (filter.getCodiceDestinatarioSDI() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("codiceDestinatarioSDI")),
-                    "%" + query.getCodiceDestinatarioSDI().toUpperCase() + "%"));
+                    "%" + filter.getCodiceDestinatarioSDI().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleIndirizzo() != null) {
+        if (filter.getSedeLegaleIndirizzo() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeLegaleIndirizzo")),
-                    "%" + query.getSedeLegaleIndirizzo().toUpperCase() + "%"));
+                    "%" + filter.getSedeLegaleIndirizzo().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleNumeroCivico() != null) {
+        if (filter.getSedeLegaleNumeroCivico() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeLegaleNumeroCivico")),
-                    "%" + query.getSedeLegaleNumeroCivico().toUpperCase() + "%"));
+                    "%" + filter.getSedeLegaleNumeroCivico().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleCAP() != null) {
+        if (filter.getSedeLegaleCAP() != null) {
             specifications.add(
-                    (r, q, c) -> c.like(c.upper(r.get("sedeLegaleCAP")), "%" + query.getSedeLegaleCAP().toUpperCase() + "%"));
+                    (r, q, c) -> c.like(c.upper(r.get("sedeLegaleCAP")), "%" + filter.getSedeLegaleCAP().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleComune() != null) {
+        if (filter.getSedeLegaleComune() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeLegaleComune")),
-                    "%" + query.getSedeLegaleComune().toUpperCase() + "%"));
+                    "%" + filter.getSedeLegaleComune().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleProvincia() != null) {
+        if (filter.getSedeLegaleProvincia() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeLegaleProvincia")),
-                    "%" + query.getSedeLegaleProvincia().toUpperCase() + "%"));
+                    "%" + filter.getSedeLegaleProvincia().toUpperCase() + "%"));
         }
-        if (query.getSedeLegaleNazione() != null) {
+        if (filter.getSedeLegaleNazione() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeLegaleNazione")),
-                    "%" + query.getSedeLegaleNazione().toUpperCase() + "%"));
+                    "%" + filter.getSedeLegaleNazione().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaNome() != null) {
+        if (filter.getSedeOperativaNome() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaNome")),
-                    "%" + query.getSedeOperativaNome().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaNome().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaIndirizzo() != null) {
+        if (filter.getSedeOperativaIndirizzo() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaIndirizzo")),
-                    "%" + query.getSedeOperativaIndirizzo().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaIndirizzo().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaNumeroCivico() != null) {
+        if (filter.getSedeOperativaNumeroCivico() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaNumeroCivico")),
-                    "%" + query.getSedeOperativaNumeroCivico().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaNumeroCivico().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaCAP() != null) {
+        if (filter.getSedeOperativaCAP() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaCAP")),
-                    "%" + query.getSedeOperativaCAP().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaCAP().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaComune() != null) {
+        if (filter.getSedeOperativaComune() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaComune")),
-                    "%" + query.getSedeOperativaComune().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaComune().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaProvincia() != null) {
+        if (filter.getSedeOperativaProvincia() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaProvincia")),
-                    "%" + query.getSedeOperativaProvincia().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaProvincia().toUpperCase() + "%"));
         }
-        if (query.getSedeOperativaNazione() != null) {
+        if (filter.getSedeOperativaNazione() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("sedeOperativaNazione")),
-                    "%" + query.getSedeOperativaNazione().toUpperCase() + "%"));
+                    "%" + filter.getSedeOperativaNazione().toUpperCase() + "%"));
         }
-        if (query.getTelefono() != null) {
+        if (filter.getTelefono() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("telefono")), "%" + query.getTelefono().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("telefono")), "%" + filter.getTelefono().toUpperCase() + "%"));
         }
-        if (query.getCellulare() != null) {
+        if (filter.getCellulare() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("cellulare")), "%" + query.getCellulare().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("cellulare")), "%" + filter.getCellulare().toUpperCase() + "%"));
         }
-        if (query.getFax() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("fax")), "%" + query.getFax().toUpperCase() + "%"));
+        if (filter.getFax() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("fax")), "%" + filter.getFax().toUpperCase() + "%"));
         }
-        if (query.getEmail() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("email")), "%" + query.getEmail().toUpperCase() + "%"));
+        if (filter.getEmail() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("email")), "%" + filter.getEmail().toUpperCase() + "%"));
         }
-        if (query.getPec() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("pec")), "%" + query.getPec().toUpperCase() + "%"));
+        if (filter.getPec() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("pec")), "%" + filter.getPec().toUpperCase() + "%"));
         }
-        if (query.getWeb() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("web")), "%" + query.getWeb().toUpperCase() + "%"));
+        if (filter.getWeb() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("web")), "%" + filter.getWeb().toUpperCase() + "%"));
         }
-        if (query.getIban() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("iban")), "%" + query.getIban().toUpperCase() + "%"));
+        if (filter.getIban() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("iban")), "%" + filter.getIban().toUpperCase() + "%"));
         }
-        if (query.getNazioneTrasmittente() != null) {
+        if (filter.getNazioneTrasmittente() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("nazioneTrasmittente")),
-                    "%" + query.getNazioneTrasmittente().toUpperCase() + "%"));
+                    "%" + filter.getNazioneTrasmittente().toUpperCase() + "%"));
         }
-        if (query.getPartitaIvaTrasmittente() != null) {
+        if (filter.getPartitaIvaTrasmittente() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("partitaIvaTrasmittente")),
-                    "%" + query.getPartitaIvaTrasmittente().toUpperCase() + "%"));
+                    "%" + filter.getPartitaIvaTrasmittente().toUpperCase() + "%"));
         }
-        if (query.getCodiceAteco() != null) {
+        if (filter.getCodiceAteco() != null) {
             specifications
-                    .add((r, q, c) -> c.like(c.upper(r.get("codiceAteco")), "%" + query.getCodiceAteco().toUpperCase() + "%"));
+                    .add((r, q, c) -> c.like(c.upper(r.get("codiceAteco")), "%" + filter.getCodiceAteco().toUpperCase() + "%"));
         }
-        if (query.getCanale() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("canale")), "%" + query.getCanale().toUpperCase() + "%"));
+        if (filter.getCanale() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("canale")), "%" + filter.getCanale().toUpperCase() + "%"));
         }
-        if (query.getInsegna() != null) {
-            specifications.add((r, q, c) -> c.like(c.upper(r.get("insegna")), "%" + query.getInsegna().toUpperCase() + "%"));
+        if (filter.getInsegna() != null) {
+            specifications.add((r, q, c) -> c.like(c.upper(r.get("insegna")), "%" + filter.getInsegna().toUpperCase() + "%"));
         }
         // ivaVentilata
 
         NativeQueryHelper NativeQueryHelper = new NativeQueryHelper();
-        if (query.getGerarchiaId() != null) {
+        if (filter.getGerarchiaId() != null) {
             String gerarchNativeQuery = NativeQueryHelper.gerarchiaNativeQuery();
             Query hierarchiaRoots = entityManager
                     .createNativeQuery(gerarchNativeQuery)
-                    .setParameter("gerarchiaid", query.getGerarchiaId());
+                    .setParameter("gerarchiaid", filter.getGerarchiaId());
             List<String> hierarchiaRootsIds = hierarchiaRoots.getResultList();
 
             specifications.add(
@@ -393,7 +396,7 @@ public class NegozioQueryServiceImpl implements NegozioQueryService {
     }
 
     @Override
-    public NegoziResponse searchNegozio(NegozioSearchRequest query) {
+    public NegoziResponse searchNegozio(GenericSearchRequest<NegozioFilter> query) {
 
         NegoziResponse negozioResponse = new NegoziResponse();
         Page<NegozioQueryEntity> page = searchQueryNegozio(query);
