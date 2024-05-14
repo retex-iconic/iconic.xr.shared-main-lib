@@ -1,17 +1,15 @@
 package com.retexspa.xr.ms.main.query.services;
 
-import com.retexspa.xr.ms.main.core.entities.NegozioQueryDTO;
-import com.retexspa.xr.ms.main.core.helpers.NativeQueryHelper;
-import com.retexspa.xr.ms.main.core.queries.BaseSort;
-import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
-import com.retexspa.xr.ms.main.core.queries.NegozioListQuery;
-import com.retexspa.xr.ms.main.core.responses.NegoziResponse;
-import com.retexspa.xr.ms.main.core.responses.Pagination;
-import com.retexspa.xr.ms.main.core.searchRequest.NegozioSearchRequest;
-import com.retexspa.xr.ms.main.query.entities.NegozioQueryEntity;
-import com.retexspa.xr.ms.main.query.filterRequest.NegozioFilter;
-import com.retexspa.xr.ms.main.query.repositories.NegozioRepository;
-import com.retexspa.xr.ms.main.query.mappers.NegozioQueryMapper;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+import javax.persistence.criteria.Root;
+import javax.persistence.criteria.Subquery;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,14 +18,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.criteria.Root;
-import javax.persistence.criteria.Subquery;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.retexspa.xr.ms.main.core.entities.NegozioQueryDTO;
+import com.retexspa.xr.ms.main.core.helpers.NativeQueryHelper;
+import com.retexspa.xr.ms.main.core.queries.BaseSort;
+import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
+import com.retexspa.xr.ms.main.core.queries.NegozioListQuery;
+import com.retexspa.xr.ms.main.core.responses.NegoziResponse;
+import com.retexspa.xr.ms.main.core.responses.Pagination;
+import com.retexspa.xr.ms.main.query.entities.NegozioQueryEntity;
+import com.retexspa.xr.ms.main.query.filterRequest.NegozioFilter;
+import com.retexspa.xr.ms.main.query.mappers.NegozioQueryMapper;
+import com.retexspa.xr.ms.main.query.repositories.NegozioRepository;
 
 @Service
 public class NegozioQueryServiceImpl implements NegozioQueryService {

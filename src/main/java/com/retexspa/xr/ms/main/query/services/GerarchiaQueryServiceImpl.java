@@ -1,18 +1,9 @@
 package com.retexspa.xr.ms.main.query.services;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.retexspa.xr.ms.main.core.entities.GerarchiaQueryDTO;
-import com.retexspa.xr.ms.main.core.queries.BaseSort;
-import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
-import com.retexspa.xr.ms.main.core.queries.GerarchiaListQuery;
-import com.retexspa.xr.ms.main.core.responses.GerarchieResponse;
-import com.retexspa.xr.ms.main.core.responses.Pagination;
-import com.retexspa.xr.ms.main.core.searchRequest.GerarchiaSearchRequest;
-import com.retexspa.xr.ms.main.query.entities.GerarchiaQueryEntity;
-import com.retexspa.xr.ms.main.query.filterRequest.GerarchiaFilter;
-import com.retexspa.xr.ms.main.query.filterRequest.NegozioFilter;
-import com.retexspa.xr.ms.main.query.mappers.GerarchiaQueryMapper;
-import com.retexspa.xr.ms.main.query.repositories.GerarchiaRepository;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,9 +12,17 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collectors;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.retexspa.xr.ms.main.core.entities.GerarchiaQueryDTO;
+import com.retexspa.xr.ms.main.core.queries.BaseSort;
+import com.retexspa.xr.ms.main.core.queries.GenericSearchRequest;
+import com.retexspa.xr.ms.main.core.queries.GerarchiaListQuery;
+import com.retexspa.xr.ms.main.core.responses.GerarchieResponse;
+import com.retexspa.xr.ms.main.core.responses.Pagination;
+import com.retexspa.xr.ms.main.query.entities.GerarchiaQueryEntity;
+import com.retexspa.xr.ms.main.query.filterRequest.GerarchiaFilter;
+import com.retexspa.xr.ms.main.query.mappers.GerarchiaQueryMapper;
+import com.retexspa.xr.ms.main.query.repositories.GerarchiaRepository;
 @Service
 public class GerarchiaQueryServiceImpl implements GerarchiaQueryService {
 
