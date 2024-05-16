@@ -60,7 +60,7 @@ public class AttributoQueryServiceImpl implements AttributoQueryService {
           case "aggregato":
             break;
 
-          case "checkvalue":
+          case "checkValue":
             break;
 
           case "version":
@@ -109,6 +109,10 @@ public class AttributoQueryServiceImpl implements AttributoQueryService {
     if (filter.getAggregato() != null) {
       specifications.add(
           (r, q, c) -> c.like(c.upper(r.get("aggregato")), "%" + filter.getAggregato().toUpperCase() + "%"));
+    }
+    if (filter.getCheckValue() != null) {
+      specifications.add(
+              (r, q, c) -> c.like(c.upper(r.get("checkValue")), "%" + filter.getCheckValue().toUpperCase() + "%"));
     }
     if (filter.getVersion() != null) {
       specifications.add((r, q, c) -> c.equal(r.get("version"), filter.getVersion()));
