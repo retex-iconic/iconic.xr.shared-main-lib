@@ -480,11 +480,11 @@ public class NegozioFilter {
             Object reaCapitaleSociale = map.get("reaCapitaleSociale");
 
             if(reaCapitaleSociale != null){
-                if(reaCapitaleSociale instanceof BigDecimal){
+                if (reaCapitaleSociale instanceof Double) {
+                    filter.setReaCapitaleSociale(BigDecimal.valueOf((Double) reaCapitaleSociale));
+                } else if (reaCapitaleSociale instanceof BigDecimal) {
                     filter.setReaCapitaleSociale((BigDecimal) reaCapitaleSociale);
-                } /*else if (reaCapitaleSociale instanceof BigDecimal){
-                    filter.setReaCapitaleSociale((BigDecimal) reaCapitaleSociale);
-                }*/
+                }
             }
             filter.setReaSocioUnico((String) map.get("reaSocioUnico"));
             filter.setReaLiquidazione((String) map.get("reaLiquidazione"));
