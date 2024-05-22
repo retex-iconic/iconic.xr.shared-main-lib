@@ -93,5 +93,11 @@ public class GerarchiaBaseDTO {
     this.negozioId = negozioId;
   }
 
+  public static String getDetailNameGerarchia() {
+    return "Gerarchia";
+  }
 
+  public static String getDetailNameGerarchiaAggregate() {
+    return "GerarchiaAggregate";
+  }
 }

@@ -72,4 +72,12 @@ public class AttributoBaseDTO {
   public String getAggregateId() {
     return UUID.randomUUID().toString();
   }
+
+  public static String getDetailNameAttributo() {
+    return "Attributo";
+  }
+
+  public static String getDetailNameAttributoAggregate() {
+    return "AttributoAggregate";
+  }
 }

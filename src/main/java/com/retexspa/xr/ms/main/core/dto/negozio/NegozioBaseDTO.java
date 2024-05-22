@@ -441,6 +441,14 @@ public class NegozioBaseDTO {
     this.ivaVentilata = ivaVentilata;
   }
 
+  public static String getDetailNameNegozio() {
+    return "Negozio";
+  }
+
+  public static String getDetailNameNegozioAggregate() {
+    return "NegozioAggregate";
+  }
+
   /*public String getDescrizione() {
     return descrizione;
   }

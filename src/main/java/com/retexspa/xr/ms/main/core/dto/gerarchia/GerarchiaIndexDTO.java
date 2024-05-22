@@ -62,7 +62,7 @@ public class GerarchiaIndexDTO {
     this.nodoIds = nodoIds;
   }
 
-  public static String getDetailNameNodoIds() {
+  public static String getDetailNameNodo() {
     return "nodoIds";
   }
 
