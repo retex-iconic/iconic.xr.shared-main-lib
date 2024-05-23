@@ -16,7 +16,6 @@ public class AttributoAddRemoveDTO {
 
   @NotNull(message = "attributi is mandatory")
   @NotEmpty(message = "attributi is mandatory")
-  @NotBlank(message = "attributi is mandatory")
   private List<AttributoValoreDTO> attributi;
 
   @NotNull(message = "event is mandatory")
