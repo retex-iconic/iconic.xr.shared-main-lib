@@ -93,11 +93,11 @@ public class GerarchiaBaseDTO {
     this.negozioId = negozioId;
   }
 
-  public static String getDetailNameGerarchia() {
+  public static String getName() {
     return "Gerarchia";
   }
 
-  public static String getDetailNameGerarchiaAggregate() {
+  public static String getAggregateName() {
     return "GerarchiaAggregate";
   }
 }

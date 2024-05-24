@@ -73,11 +73,11 @@ public class AttributoBaseDTO {
     return UUID.randomUUID().toString();
   }
 
-  public static String getDetailNameAttributo() {
+  public static String getName() {
     return "Attributo";
   }
 
-  public static String getDetailNameAttributoAggregate() {
+  public static String getAggregateName() {
     return "AttributoAggregate";
   }
 }
