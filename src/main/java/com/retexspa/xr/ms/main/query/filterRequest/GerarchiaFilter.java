@@ -9,8 +9,8 @@ import java.util.LinkedHashMap;
 public class GerarchiaFilter {
 
     private String id;
-    private String code;
-    private String name;
+    private String codice;
+    private String nome;
     private Long version;
 
     public GerarchiaFilter() {
@@ -18,12 +18,12 @@ public class GerarchiaFilter {
 
     public GerarchiaFilter(
             @JsonProperty("id") String id,
-            @JsonProperty("code") String code,
-            @JsonProperty("name") String name,
+            @JsonProperty("codice") String codice,
+            @JsonProperty("nome") String nome,
             @JsonProperty("version")Long version) {
         this.id = id;
-        this.code = code;
-        this.name = name;
+        this.codice = codice;
+        this.nome = nome;
         this.version = version;
     }
 
@@ -35,20 +35,20 @@ public class GerarchiaFilter {
         this.id = id;
     }
 
-    public String getCode() {
-        return code;
+    public String getCodice() {
+        return codice;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setCodice(String codice) {
+        this.codice = codice;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public Long getVersion() {
@@ -71,8 +71,8 @@ public class GerarchiaFilter {
         GerarchiaFilter filter = new GerarchiaFilter();
         if(map != null){
             filter.setId((String) map.get("id"));
-            filter.setCode((String) map.get("code"));
-            filter.setName((String) map.get("name"));
+            filter.setCodice((String) map.get("codice"));
+            filter.setNome((String) map.get("nome"));
             Object version = map.get("version");
             if(version != null){
                 if(version instanceof Integer){
