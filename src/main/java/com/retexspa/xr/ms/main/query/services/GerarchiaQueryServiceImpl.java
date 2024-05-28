@@ -65,12 +65,12 @@ public class GerarchiaQueryServiceImpl implements GerarchiaQueryService {
             specifications.add((r, q, c) -> c.equal(r.get("id"), filter.getId()));
         }
 
-        if (filter.getName() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("nome"), filter.getName()));
+        if (filter.getCodice() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("codice"), filter.getCodice()));
         }
 
-        if (filter.getCode() != null) {
-            specifications.add((r, q, c) -> c.equal(r.get("codice"), filter.getCode()));
+        if (filter.getNome() != null) {
+            specifications.add((r, q, c) -> c.equal(r.get("nome"), filter.getNome()));
         }
 
         /*if (filter.getDescription() != null) {
