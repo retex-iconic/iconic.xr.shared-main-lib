@@ -106,4 +106,13 @@ public class ConfigBaseDTO {
   public String getAggregateId() {
     return UUID.randomUUID().toString();
   }
+
+  public static String getName() {
+    return "Config";
+  }
+  public static String getAggregateName() {
+    return "ConfigAggregate";
+  }
+
+
 }

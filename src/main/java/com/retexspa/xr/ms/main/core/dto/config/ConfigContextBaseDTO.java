@@ -64,4 +64,11 @@ public class ConfigContextBaseDTO {
   public String getAggregateId() {
     return UUID.randomUUID().toString();
   }
+
+  public static String getAggregateName(){
+    return "ConfigContextAggregate";
+  }
+  public static String getName(){
+    return "ConfigContext";
+  }
 }
