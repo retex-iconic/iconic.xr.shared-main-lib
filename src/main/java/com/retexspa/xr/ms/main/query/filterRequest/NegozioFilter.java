@@ -50,12 +50,14 @@ public class NegozioFilter {
     private String codiceAteco;
     private String canale;
     private String insegna;
+
+    private Boolean ivaVentilata;
     private Long version;
 
     public NegozioFilter() {
     }
 
-    public NegozioFilter(String id, String nome, String codice, String descrizione, String gerarchiaId, String ragioneSociale, String codiceFiscale, String regimeFiscale, String magazzino, String differenzialePartitaIVA, String nazionePartitaIVA, String partitaIVA, String reaUfficio, String reaNumero, BigDecimal reaCapitaleSociale, String reaSocioUnico, String reaLiquidazione, String codiceDestinatarioSDI, String sedeLegaleIndirizzo, String sedeLegaleNumeroCivico, String sedeLegaleCAP, String sedeLegaleComune, String sedeLegaleProvincia, String sedeLegaleNazione, String sedeOperativaNome, String sedeOperativaIndirizzo, String sedeOperativaNumeroCivico, String sedeOperativaCAP, String sedeOperativaComune, String sedeOperativaProvincia, String sedeOperativaNazione, String telefono, String cellulare, String fax, String email, String pec, String web, String iban, String nazioneTrasmittente, String partitaIvaTrasmittente, String codiceAteco, String canale, String insegna, Long version) {
+    public NegozioFilter(String id, String nome, String codice, String descrizione, String gerarchiaId, String ragioneSociale, String codiceFiscale, String regimeFiscale, String magazzino, String differenzialePartitaIVA, String nazionePartitaIVA, String partitaIVA, String reaUfficio, String reaNumero, BigDecimal reaCapitaleSociale, String reaSocioUnico, String reaLiquidazione, String codiceDestinatarioSDI, String sedeLegaleIndirizzo, String sedeLegaleNumeroCivico, String sedeLegaleCAP, String sedeLegaleComune, String sedeLegaleProvincia, String sedeLegaleNazione, String sedeOperativaNome, String sedeOperativaIndirizzo, String sedeOperativaNumeroCivico, String sedeOperativaCAP, String sedeOperativaComune, String sedeOperativaProvincia, String sedeOperativaNazione, String telefono, String cellulare, String fax, String email, String pec, String web, String iban, String nazioneTrasmittente, String partitaIvaTrasmittente, String codiceAteco, String canale, String insegna, Boolean ivaVentilata, Long version) {
         this.id = id;
         this.nome = nome;
         this.codice = codice;
@@ -99,6 +101,7 @@ public class NegozioFilter {
         this.codiceAteco = codiceAteco;
         this.canale = canale;
         this.insegna = insegna;
+        this.ivaVentilata = ivaVentilata;
         this.version = version;
     }
 
@@ -454,6 +457,14 @@ public class NegozioFilter {
         this.version = version;
     }
 
+    public Boolean getIvaVentilata() {
+        return ivaVentilata;
+    }
+
+    public void setIvaVentilata(Boolean ivaVentilata) {
+        this.ivaVentilata = ivaVentilata;
+    }
+
     public static NegozioFilter createFilterFromMap(Object obj) {
         ObjectMapper mapper = new ObjectMapper();
         String json = null;
@@ -514,6 +525,7 @@ public class NegozioFilter {
             filter.setCodiceAteco(((String) map.get("codiceAteco")));
             filter.setCanale(((String) map.get("canale")));
             filter.setInsegna(((String) map.get("insegna")));
+            filter.setIvaVentilata((Boolean) map.get("ivaVentilata"));
             Object version = map.get("version");
             if(version != null){
                 if(version instanceof Integer){
