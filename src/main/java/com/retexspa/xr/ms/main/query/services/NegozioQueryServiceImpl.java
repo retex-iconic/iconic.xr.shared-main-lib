@@ -362,7 +362,10 @@ public class NegozioQueryServiceImpl implements NegozioQueryService {
         if (filter.getInsegna() != null) {
             specifications.add((r, q, c) -> c.like(c.upper(r.get("insegna")), "%" + filter.getInsegna().toUpperCase() + "%"));
         }
-        // ivaVentilata
+        if (filter.getIvaVentilata() != null) {
+            specifications
+                    .add((r, q, c) -> c.equal(r.get("ivaVentilata"), filter.getIvaVentilata()));
+        }
 
         NativeQueryHelper NativeQueryHelper = new NativeQueryHelper();
         if (filter.getGerarchiaId() != null) {
