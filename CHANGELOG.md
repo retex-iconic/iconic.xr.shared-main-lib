@@ -1,5 +1,31 @@
 # Changelog
 
+## 1.0.0 (2024-06-17)
+
+
+### Features
+
+* #IXB-449 attributo centralized, delete, graphql ([384adbd](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/384adbd8ac41850e791af08edc09e653cc1548d7))
+* centralizzazione attributi e config ([29c0909](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/29c0909527f6bf0f1d394e637e2777e1edec12be))
+* github actions ([d3e227c](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/d3e227c95c60a87df4374d9955ba2a21c569fc64))
+* IAM-184-Refactoring-Changing-Iam-architecture ([cc5a547](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/cc5a547aa9f8117806d82b5a11fd89b7c51226cb))
+* IXB-473-Aggregate-name-parametrizzazione + fix bugs related to previous work on that ([a3b49e7](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/a3b49e7fa9a0106efd30ec79f3c9e6bc7f20f81b))
+* IXB-475 Centralizzazione-CONFIG_CONTEXT-and-CONFIG-in-Shared-main ([0e916ad](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/0e916add4b3f32137c066360932fcb9bfee7462c))
+* IXB-480 FIX-Negozio ([13c2c29](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/13c2c2980f93ead90024e6df6b2a6b19645c12a9))
+* IXL-46-Control-graphql-and-query-gerarchia-and-negozio-like-masterdata-and-iam ([e2a7282](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/e2a72829a4ab091a9200f63b4803b633034f33a6))
+* IXL-49-TAB_TIPI_OPE ([944d2ff](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/944d2ff32d5d4dfbce3727b241fcb39a9565a8bd))
+* IXL-54-Attributi ([2c5b11d](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/2c5b11dac15f417fe5d0d88c7783f6394abde573))
+* Refactoring - Changing Masterdata architecture ([2866a07](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/2866a078e5da1e39d614e7280982e6c2353e43e9))
+
+
+### Bug Fixes
+
+* Build failure due to not reading getting/setters in mapper ([93189a5](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/93189a500a1efe418730b9024f65ed45ee231789))
+* gerarchia & negozio ([d70b3f6](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/d70b3f694be631b0aee8081ddd535aa8466457eb))
+* IAM-187-BigDecimal-type-not-accepted-in-graphql ([cc42433](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/cc424333b8e6740b106c6f7901fa74ec5fe3a24d))
+* IAM-210-Aggregate-Gerarchia-errors ([c8ef536](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/c8ef536b2e17785b83b0ebabd05bd074d31e4668))
+* IXB-474-fix-naming in BaseDTO and MessageDispatcher ([1844adb](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/1844adb8387eaaae70d5654e446c03e03a5a1b42))
+
 ## [0.3.0](https://github.com/retex-iconic/iconic.xr.shared-lib/compare/v0.2.0...v0.3.0) (2024-03-06)
 
 
