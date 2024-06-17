@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.retexspa</groupId>
   <artifactId>xr-shared-main-lib</artifactId>
-  <version>1.0.2-SNAPSHOT</version>
+  <version>1.0.2</version>
   <name>xr-shared-main-lib</name>
   <description>Iconic XR - Shared Lib</description>
   <properties>
