@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/retex-iconic/iconic.xr.shared-main-lib/compare/v1.0.0...v1.0.1) (2024-06-17)
+
+
+### Bug Fixes
+
+* renovate crypted pass ([e9dafa0](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/e9dafa01f782d5750caae70f2add333b01916735))
+* renovate encrypt ([7deed97](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/7deed9775cbe47e82ad569dbffb0bc5e9087a82c))
+
 ## 1.0.0 (2024-06-17)
 
 
