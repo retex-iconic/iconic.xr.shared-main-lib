@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.2](https://github.com/retex-iconic/iconic.xr.shared-main-lib/compare/v1.0.1...v1.0.2) (2024-06-17)
+
+
+### Bug Fixes
+
+* **deps:** update dependency com.retexspa:xr-springboot-bom to v0.12.4 ([ade95c0](https://github.com/retex-iconic/iconic.xr.shared-main-lib/commit/ade95c0d4ad977fdf4fffbec406e7885cd6e8623))
+
 ## [1.0.1](https://github.com/retex-iconic/iconic.xr.shared-main-lib/compare/v1.0.0...v1.0.1) (2024-06-17)
 
 
